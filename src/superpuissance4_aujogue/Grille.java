@@ -49,13 +49,13 @@ public void afficherGrilleSurConsole(){
     for (int i = 0 ; i<6 ; i++){
         for (int j = 0 ; j<7 ; j++){
             if (Cellules[i][j].trouNoir){
-                System.out.print();
+                System.out.print("T");
             }
             else if (Cellules[i][j].desintegrateur){
-                System.out.print();
+                System.out.print("D");
             }
             else if (Cellules[i][j].jetonCourant == null){
-                System.out.print();
+                System.out.print("N");
             }
             else{
                 System.out.print(Cellules[i][j].jetonCourant);
@@ -77,7 +77,19 @@ public String lireCouleurDuJeton(int i , int j){
 }
 
 public boolean etreGagnantePourJoueur(Joueur unJoueur){
-    
+    boolean a = false;
+    for (int i = 0 ; i<6 ; i++){
+        for (int j = 0 ; j<7 ; j++){
+            if (lireCouleurDuJeton(i,j).equals(unJoueur.couleur) && lireCouleurDuJeton(i+1,j).equals(unJoueur.couleur) && lireCouleurDuJeton(i+2,j).equals(unJoueur.couleur) && lireCouleurDuJeton(i+3,j).equals(unJoueur.couleur));{
+                a = true;
+            }if (lireCouleurDuJeton(i,j).equals(unJoueur.couleur) && lireCouleurDuJeton(i,j+1).equals(unJoueur.couleur) && lireCouleurDuJeton(i,j+2).equals(unJoueur.couleur) && lireCouleurDuJeton(i,j+3).equals(unJoueur.couleur)){
+                a = true;
+            }if (lireCouleurDuJeton(i,j).equals(unJoueur.couleur) && lireCouleurDuJeton(i+1,j+1).equals(unJoueur.couleur) && lireCouleurDuJeton(i+2,j+2).equals(unJoueur.couleur) && lireCouleurDuJeton(i+3,j+3).equals(unJoueur.couleur)){
+                a = true;    
+            }          
+        }
+    }
+    return a;
 }
 
 public void tasserGrille(int ligne, int colonne){
