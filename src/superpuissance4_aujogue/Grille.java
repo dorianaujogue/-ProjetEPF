@@ -73,7 +73,8 @@ public boolean celluleOccupee(int i , int j){
 }
 
 public String lireCouleurDuJeton(int i , int j){
-    return Cellules[i][j].jetonCourant.couleur;
+    String a = Cellules[i][j].jetonCourant.couleur;
+    return a;
 }
 
 public boolean etreGagnantePourJoueur(Joueur unJoueur){
@@ -114,8 +115,8 @@ public boolean colonneRemplie(){
 }
 
 public boolean placerTrouNoir(int i,int j){
-    if (Cellules[i][j].trouNoir){
-        Cellules[i][j].trouNoir = true;
+    if (Cellules[i][j].trouNoir == false){
+        Cellules[i][j].trouNoir = true; 
         return true;
     }else{
         return false;
@@ -123,7 +124,7 @@ public boolean placerTrouNoir(int i,int j){
 }
 
 public boolean placerDesintegrateur(int i, int j){
-    if (Cellules[i][j].desintegrateur){
+    if (Cellules[i][j].desintegrateur == false){
         Cellules[i][j].desintegrateur = true;
         return true;
     }else{

@@ -19,11 +19,11 @@ public void initialiserPartie(){
     grilleDeJeu.viderGrille();
     
     //création des joueurs
-    Scanner sc = new Scanner(System.in);
+    /*Scanner sc = new Scanner(System.in);
     System.out.println("Choix du pseudo du premier joueur");
     String rep1 = sc.nextLine();
     System.out.println("Choix du pseudo du second joueur");
-    String rep2 = sc.nextLine();
+    String rep2 = sc.nextLine();*/
     Joueur joueur1 = new Joueur();
     Joueur joueur2 = new Joueur();
     ListeJoueurs[0] = joueur1;
@@ -31,11 +31,11 @@ public void initialiserPartie(){
 
     attribuerCouleursAuxJoueurs();
     
-            
+          
     int nb1 = 0;
     int nb2 = 0;
     //création des trous noirs
-    while (nb1 < 6){
+    while (nb1 < 5){
         int i = (int) (Math.random() * (6-1));//cela permet de trouver des coordonnées aléatoire pour ensuite placer un trou noir
         int j = (int) (Math.random() * (7-1));
         grilleDeJeu.placerTrouNoir(i,j);
@@ -43,7 +43,7 @@ public void initialiserPartie(){
     }
     
     //création des désintégrateurs
-    while (nb2 < 7){
+    while (nb2 < 5){
         int i = (int) (Math.random() * (6-1));
         int j = (int) (Math.random() * (7-1));
         grilleDeJeu.placerDesintegrateur(i,j);
@@ -94,7 +94,16 @@ public void debuterPartie(){
         }
         if (choix == 3){
             if (joueurCourant.nbDesintegrateurs > 0){
-                
+                System.out.println("Dans quelle colonne voulez vous utiliser un désintégrateur ?");
+                Scanner scanner4 = new Scanner(System.in);
+                int colonne2 = scanner4.nextInt();
+                System.out.println("Dans quelle ligne voulez vous utiliser un désintégrateur ?");
+                Scanner scanner5 = new Scanner(System.in);
+                int ligne2 = scanner5.nextInt();
+                grilleDeJeu.Cellules[ligne2][colonne2] = null;                
+            }else{
+                System.out.println("Vous ne possédez pas de désintégrateur, pour la peine, vous sautez votre tour ");
+                prochainJoueur(joueurCourant);
             }
         }
     }
