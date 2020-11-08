@@ -65,11 +65,13 @@ public void afficherGrilleSurConsole(){
 }
 
 public boolean celluleOccupee(int i , int j){
+    boolean a;
     if(Cellules[i][j].jetonCourant != null){
-       return true;
+        a = true;
     }else{
-        return false;
-    }   
+        a = false;
+    }
+    return a; 
 }
 
 public String lireCouleurDuJeton(int i , int j){
@@ -115,12 +117,12 @@ public boolean colonneRemplie(){
 }
 
 public boolean placerTrouNoir(int i,int j){
+    boolean a = false;
     if (Cellules[i][j].trouNoir == false){
         Cellules[i][j].trouNoir = true; 
-        return true;
-    }else{
-        return false;
+        a = true;
     }
+    return a;
 }
 
 public boolean placerDesintegrateur(int i, int j){
