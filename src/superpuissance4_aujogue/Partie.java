@@ -23,8 +23,8 @@ public void initialiserPartie(){
     String rep1 = sc.nextLine();
     System.out.println("Choix du pseudo du second joueur");
     String rep2 = sc.nextLine();
-    Joueur joueur1 = Joueur(rep1);
-    Joueur joueur2 = Joueur(rep2);
+    Joueur joueur1 = new Joueur(rep1);
+    Joueur joueur2 = new Joueur(rep2);
     ListeJoueurs[0] = joueur1;
     ListeJoueurs[1] = joueur2;
 
@@ -54,10 +54,25 @@ public void initialiserPartie(){
 }
 
 public void debuterPartie(){
+    
     initialiserPartie();
+    int choix; 
+    Scanner sc = new  Scanner (System.in);
     while ( grilleDeJeu.etreGagnantePourJoueur(ListeJoueurs[0]) == true || grilleDeJeu.etreGagnantePourJoueur(ListeJoueurs[1]) == true || grilleDeJeu.etreRemplie() == true){
-        System.out.println("Que souhaitez vous faire ? \n 1)Jouer un jeton \n 2)Récuperer un jeton \n 3)Utiliser un désintégrateur");
+        System.out.println("Que souhaitez vous faire ? \n 1)Placer un jeton \n 2)Récuperer un jeton \n 3)Utiliser un désintégrateur");
+        choix = sc.nextInt();
+        while (choix<1 || choix>4){
+            System.out.println("Choix non valide, que souhaitez vous faire ?");
+            choix = sc.nextInt();
+        }
+        if (choix == 1){
+            System.out.println("Dans quelle colonne souhaitez vous ajouter votre jeton ?");
+            Scanner scanner1 = new Scanner(System.in);
+            int colonne = scanner1.nextInt();
+            grilleDeJeu.ajouterJetonDansColonne(joueurCourant.ListeJetons[joueurCourant.nombreJetons],colonne);
+        }
     }
+    
 }
 }
 

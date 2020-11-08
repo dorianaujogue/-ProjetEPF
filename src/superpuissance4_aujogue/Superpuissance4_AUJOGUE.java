@@ -11,10 +11,6 @@ package superpuissance4_aujogue;
 public class Superpuissance4_AUJOGUE {
 
     public static void main(String[] args) {
-        /*String nom;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Quel est votre nom ?");
-        nom = sc.nextLine();*/
         System.out.print("Bienvenue dans le jeu Super Puissance 4 !");
         Partie Jeu = new Partie();
         Jeu.debuterPartie();
