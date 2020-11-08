@@ -4,8 +4,9 @@ package superpuissance4_aujogue;
 import java.util.Scanner; //on importe le scanner
 
 public class Partie {
-    Joueur ListeJoueurs [] = new Joueur [1];
+    Joueur ListeJoueurs [] = new Joueur [2];
     Joueur joueurCourant;
+    Grille grilleDeJeu = new Grille();
     
 public void attribuerCouleursAuxJoueurs(){
     ListeJoueurs[0].affecterCouleur("jaune");
@@ -14,7 +15,7 @@ public void attribuerCouleursAuxJoueurs(){
 }
 
 public void initialiserPartie(){
-    Grille grilleDeJeu = new Grille();
+    
     grilleDeJeu.viderGrille();
     
     //création des joueurs
@@ -23,8 +24,8 @@ public void initialiserPartie(){
     String rep1 = sc.nextLine();
     System.out.println("Choix du pseudo du second joueur");
     String rep2 = sc.nextLine();
-    Joueur joueur1 = new Joueur(rep1);
-    Joueur joueur2 = new Joueur(rep2);
+    Joueur joueur1 = new Joueur();
+    Joueur joueur2 = new Joueur();
     ListeJoueurs[0] = joueur1;
     ListeJoueurs[1] = joueur2;
 
@@ -53,6 +54,14 @@ public void initialiserPartie(){
     joueurCourant = ListeJoueurs[0];
 }
 
+public Joueur prochainJoueur (Joueur unJoueur){
+    if(ListeJoueurs[0] == joueurCourant){
+        return ListeJoueurs[1];
+    }else{
+        return ListeJoueurs[0];
+    }       
+}
+
 public void debuterPartie(){
     
     initialiserPartie();
@@ -69,7 +78,24 @@ public void debuterPartie(){
             System.out.println("Dans quelle colonne souhaitez vous ajouter votre jeton ?");
             Scanner scanner1 = new Scanner(System.in);
             int colonne = scanner1.nextInt();
-            grilleDeJeu.ajouterJetonDansColonne(joueurCourant.ListeJetons[joueurCourant.nombreJetons],colonne);
+            grilleDeJeu.ajouterJetonDansColonne(joueurCourant.listejetons[joueurCourant.nbJetonsRestants],colonne);
+            joueurCourant.nbJetonsRestants = joueurCourant.nbJetonsRestants - 1;
+            prochainJoueur(joueurCourant);
+        }
+        if (choix == 2){
+            System.out.println("Quelle est la colonne du jeton que vous voulez récupérer ?");
+            Scanner scanner2 = new Scanner(System.in);
+            int colonne1 = scanner2.nextInt();
+            System.out.println("Quelle est la ligne du jeton que vous voulez récupérer ?");
+            Scanner scanner3 = new Scanner(System.in);
+            int ligne1 = scanner3.nextInt();
+            grilleDeJeu.recupererJeton(ligne1,colonne1);
+            prochainJoueur(joueurCourant);
+        }
+        if (choix == 3){
+            if (joueurCourant.nbDesintegrateurs > 0){
+                
+            }
         }
     }
     

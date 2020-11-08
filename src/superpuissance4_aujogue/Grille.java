@@ -40,7 +40,7 @@ public boolean etreRemplie(){
 public void viderGrille(){
     for (int i = 0 ; i<6 ; i++){
         for (int j = 0 ; j<7 ; j++){
-            Cellules[i][j].jetonCourant=null;
+            Cellules[i][j] = null;
         }
     } 
 }
