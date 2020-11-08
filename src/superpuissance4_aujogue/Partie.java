@@ -1,8 +1,10 @@
 
 package superpuissance4_aujogue;
 
+import java.util.Scanner; //on importe le scanner
+
 public class Partie {
-    Joueur ListeJoueurs [] = new Joueur [2];
+    Joueur ListeJoueurs [] = new Joueur [1];
     Joueur joueurCourant;
     
 public void attribuerCouleursAuxJoueurs(){
@@ -12,30 +14,39 @@ public void attribuerCouleursAuxJoueurs(){
 }
 
 public void initialiserPartie(){
-    Grille G = new Grille();
-    G.viderGrille();
+    Grille grilleDeJeu = new Grille();
+    grilleDeJeu.viderGrille();
+    
+    //création des joueurs
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Choix du pseudo du premier joueur");
+    String rep1 = sc.nextLine();
+    System.out.println("Choix du pseudo du second joueur");
+    String rep2 = sc.nextLine();
+    Joueur joueur1 = Joueur(rep1);
+    Joueur joueur2 = Joueur(rep2);
+    ListeJoueurs[0] = joueur1;
+    ListeJoueurs[1] = joueur2;
+
+    attribuerCouleursAuxJoueurs();
+    
+            
     int nb1 = 0;
     int nb2 = 0;
     //création des trous noirs
     while (nb1 < 6){
-        int i = (int) Math.random() * (5);//cela permet de trouver des coordonnées aléatoire pour ensuite placer un trou noir
-        int j = (int) Math.random() * (6);
-        G.placerTrouNoir(i,j);
+        int i = (int) (Math.random() * (6-1));//cela permet de trouver des coordonnées aléatoire pour ensuite placer un trou noir
+        int j = (int) (Math.random() * (7-1));
+        grilleDeJeu.placerTrouNoir(i,j);
         nb1++;
     }
     
     //création des désintégrateurs
     while (nb2 < 7){
-        int i = (int) Math.random() * (5);
-        int j = (int) Math.random() * (6);
-        G.placerDesintegrateur(i,j);
+        int i = (int) (Math.random() * (6-1));
+        int j = (int) (Math.random() * (7-1));
+        grilleDeJeu.placerDesintegrateur(i,j);
         nb2++;
-    }
-    
-    //création et attribution des jetons
-    for (int i = 0 ; i<21 ; i++){
-        ListeJoueurs[0].ajouterJeton(new Jeton(ListeJoueurs[0].couleur));
-        ListeJoueurs[1].ajouterJeton(new Jeton(ListeJoueurs[1].couleur));
     }
     
     //définition du joueur qui débute
@@ -44,8 +55,8 @@ public void initialiserPartie(){
 
 public void debuterPartie(){
     initialiserPartie();
-    while (G.etreGagnantePourJoueur(ListeJoueurs[0]) == true || G.etreGagnantePourJoueur(ListeJoueurs[1]) == true || G.etreRemplie() == true){
-        
+    while ( grilleDeJeu.etreGagnantePourJoueur(ListeJoueurs[0]) == true || grilleDeJeu.etreGagnantePourJoueur(ListeJoueurs[1]) == true || grilleDeJeu.etreRemplie() == true){
+        System.out.println("Que souhaitez vous faire ? \n 1)Jouer un jeton \n 2)Récuperer un jeton \n 3)Utiliser un désintégrateur");
     }
 }
 }
